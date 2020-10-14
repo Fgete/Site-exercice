@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>L A G</title>
+		<meta charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="./images/profil.jpg"/>
+		<link rel="stylesheet" type="text/css" href="./css/index.css">
+	</head>
+	<body id="body" class="anime" onload="Setup(0)">
+		<script type="text/javascript" src="./js/index.js"></script>
+		<header id="header">
+			<!-- BD-LOGO -->
+			<div id="bd-logo" class="bandeau">
+				<img src="./images/profil.jpg" id="logo">
+			</div>
+
+			<!-- BD-CHAPTER -->
+			<div id="bd-chapter" class="bandeau">
+				<div id="chap0" class="chapter clickable" onclick="OpenPage(0)">
+					accueil
+				</div>
+				<div id="chap1" class="chapter clickable" onclick="OpenPage(1)">
+					jeux
+				</div>
+				<div id="chap2" class="chapter clickable" onclick="OpenPage(2)">
+					3D
+				</div>
+				<div id="chap3" class="chapter clickable" onclick="OpenPage(3)">
+					autre
+				</div>
+			</div>
+
+			<!-- BD-NIGHT MODE -->
+			<div id="nightMode" class="bandeau clickable" onclick="toggleNightMode()">
+				<div id="nightModeLune">
+					<div id="nightModeLune2"></div>
+				</div>
+				<div id="nightModeCapsule">
+					<div id="nightModeSlider" class="anime">
+						<div id="nightModeSliderColor"></div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div id="main">
+			<div id="page0" class="chest">
+				<h1 class="darkFont">Accueil</h1>
+				<div id="diaporama">
+					<div id="slides" class="anime">
+						<div id="slide0" class="slide">
+							<div class="mask anime lightFont unSelect" onclick="OpenPage(3)">
+								VJING
+							</div>
+						</div>
+						<div src="./images/slides/slide1.png" id="slide1" class="slide">
+							<div class="mask anime lightFont unSelect" onclick="OpenPage(1)">
+								ARM Project
+							</div>
+						</div>
+						<div src="./images/slides/slide2.png" id="slide2" class="slide"></div>
+						<div src="./images/slides/slide3.png" id="slide3" class="slide"></div>
+						<div src="./images/slides/slide4.png" id="slide4" class="slide"></div>
+					</div>
+					<div id="dots">
+						<div id="dot0" class="dot" onclick="ForceSlide(0)"></div>
+						<div id="dot1" class="dot" onclick="ForceSlide(1)"></div>
+						<div id="dot2" class="dot" onclick="ForceSlide(2)"></div>
+						<div id="dot3" class="dot" onclick="ForceSlide(3)"></div>
+						<div id="dot4" class="dot" onclick="ForceSlide(4)"></div>
+					</div>
+					<div id="arrows">
+						<div class="arrow anime unSelect" onclick="PreviewSlide()">◄</div>
+						<div class="arrow anime unSelect" onclick="NextSlide()">►</div>
+					</div>
+					<script>
+						var nSlide = 0;
+						var slideTime = 5000;
+						var slides = document.getElementById("slides");
+						var dots = document.getElementsByClassName("dot");
+
+						var timerDiapo = setInterval(NextSlide, slideTime);
+
+						function NextSlide(){
+							if (nSlide < 4){
+								nSlide++;
+							}else{
+								nSlide = 0;
+							}
+							UpdateSlide();
+						}
+
+						function PreviewSlide(){
+							if (nSlide > 0){
+								nSlide--;
+							}else{
+								nSlide = 4;
+							}
+							UpdateSlide();
+						}
+
+						function ForceSlide(x){
+							nSlide = x;
+							UpdateSlide();
+						}
+
+						function UpdateSlide(){
+							slides.style.right = nSlide * 100 + "%";
+
+							for (var i = 0; i < dots.length; i++)
+								dots[i].style.opacity = "50%";
+							dots[nSlide].style.opacity = "100%";
+						}
+					</script>
+				</div>
+			</div>
+			<div id="page1" class="chest">
+				<h1 class="darkFont">Jeux</h1>
+			</div>
+			<div id="page2" class="chest">
+				<h1 class="darkFont">3D</h1>
+			</div>
+			<div id="page3" class="chest">
+				<h1 class="darkFont">Autre</h1>
+			</div>
+		</div>
+		<script>
+			var listChapter = document.getElementsByClassName("chapter");
+			var listPage = document.getElementsByClassName("chest");
+			var baseColor = "var(--color_MainWhite)";
+			var displayMode = "flex";
+			
+
+			// Show selected page
+			function OpenPage(x){
+				for (var i = 0; i < listPage.length; i++){
+					listChapter[i].style.color = baseColor;
+					listPage[i].style.display = "none";
+				}
+				listChapter[x].style.color = "var(--color_MainOrange)";
+				listPage[x].style.display = displayMode;
+			}
+
+			// Setup
+			function Setup(x){
+				OpenPage(x);
+				dots[nSlide].style.opacity = "100%";
+			}
+		</script>
+	</body>
+</html>

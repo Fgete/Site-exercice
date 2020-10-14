@@ -20,3 +20,18 @@ legend, fieldset{
 	width: 10%;
 	text-transform: uppercase;
 }
+
+#retour{
+	font-size: 3em;
+	color: white;
+	transition: .5s;
+}
+
+#retour:hover{
+	color: #ffaa00;
+}
+
+.titre{
+	color: white;
+	font-size: 3em;
+}

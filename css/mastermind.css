@@ -103,3 +103,18 @@ legend, fieldset{
 
 	background-color: #303030;
 }
+
+#retour{
+	font-size: 3em;
+	color: white;
+	transition: .5s;
+}
+
+#retour:hover{
+	color: #ffaa00;
+}
+
+.titre{
+	color: white;
+	font-size: 3em;
+}

@@ -25,3 +25,18 @@ img{
 	border: none;
 	border-radius: 10%;
 }
+
+#retour{
+	font-size: 3em;
+	color: white;
+	transition: .5s;
+}
+
+#retour:hover{
+	color: #ffaa00;
+}
+
+.titre{
+	color: white;
+	font-size: 3em;
+}

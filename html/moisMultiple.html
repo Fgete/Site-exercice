@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Mois Multiple</title>
+		<meta charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../images/profil.jpg"/>
+		<link rel="stylesheet" type="text/css" href="../css/moisMultiple.css">
+	</head>
+
+	<body>
+		<header>
+			<h1>JavaScript</h1>
+		</header>
+		<fieldset>
+			<legend>JavaScript</legend>
+			<h4>Mois</h4>
+			<form>
+				<script type="text/javascript">
+					// Tableau mois
+					var mois = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"];
+
+					// Debug longueur de la liste
+					// console.log(mois.length);
+
+					// On ouvre la balise
+					document.write("Mois : <select id='month' multiple size='4'>");
+
+					// On ajoute les différentes selections possibles
+					for (var i = 0; i < mois.length; i++) {
+						if (i == 0) {
+							// La première option est sélectionnée
+							document.write("<option value=" + (i+1) + " selected>" + mois[i] + "</option>");
+						}else{
+							document.write("<option value=" + (i+1) + ">" + mois[i] + "</option>");
+						}
+					}
+
+					// On ferme la balise
+					document.write("</select>");
+				</script>
+
+				<input type="button" value="saison ?" onclick="valider()">
+			</form>
+			<p id="answer">resultat</p>
+			<script>
+				// Calcul quel saison on est
+				function valider() {
+					// Assignation
+					var answer = document.getElementById("answer");
+					var liste = document.getElementById("month");
+					var listeSelected = [];
+
+					// On prend les éléments sélectionnés pour les mettre dans un seconde liste
+					for (var i = 0; i < liste.length; i++) {
+						if (liste[i].selected)
+							// listeSelected[listeSelected.length] = liste[i].value;
+							listeSelected.push(liste[i].value);
+					}
+
+					// DEBUG On affiche la seconde liste
+					for (var i = 0; i < listeSelected.length; i++)
+						console.log(listeSelected[i])
+
+					// Mise en forme de la réponse
+					saisons(listeSelected);
+				}
+
+				// Ecrire les différentes saisons représentées
+				function saisons(liste){
+					// On initialise ce qui sera affiché par la suite
+					var hiver = "";
+					var printemps = "";
+					var ete = "";
+					var automne = "";
+
+					// On modifie les valeur à affiché en fonction de la seconde liste
+					for (var i = 0; i < liste.length; i++){
+						if (liste[i] == 12 || liste[i] == 1 ||liste[i] == 2)
+							hiver = "hiver";
+						if (liste[i] == 3 || liste[i] == 4 ||liste[i] == 5)
+							printemps = "printemps";
+						if (liste[i] == 6 || liste[i] == 7 ||liste[i] == 8)
+							ete = "ete";
+						if (liste[i] == 9 || liste[i] == 10 ||liste[i] == 11)
+							automne = "automne";
+					}
+
+					// On affiche le résultat final
+					answer.innerHTML = "Saison(s) sélectionnée(s) : " + hiver + " " + printemps + " " + ete + " " + automne;
+				}
+			</script>
+		</fieldset>
+		<footer></footer>
+	</body>
+</html>

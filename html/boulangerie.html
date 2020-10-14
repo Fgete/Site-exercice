@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Boulangerie</title>
+		<meta charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../images/profil.jpg"/>
+		<link rel="stylesheet" type="text/css" href="../css/boulangerie.css">
+	</head>
+
+	<body>
+		<header>
+			<h1>JavaScript</h1>
+		</header>
+		<fieldset>
+			<legend>JavaScript</legend>
+			<h4>Boulangerie</h4>
+			<form>
+				<script type="text/javascript">
+					// Tableau jours
+					var jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+
+					// Debug longueur de la liste
+					console.log(jours.length);
+
+					// On ouvre la balise
+					document.write("Jours : <select id='day'>");
+
+					// On ajoute les différentes selections possibles
+					for (var i = 0; i < jours.length; i++) {
+						if (i == 0) {
+							// La première option est sélectionnée
+							document.write("<option value=" + i + " selected>" + jours[i] + "</option>");
+						}else{
+							document.write("<option value=" + i + ">" + jours[i] + "</option>");
+						}
+					}
+
+					// On ferme la balise
+					document.write("</select>");
+				</script>
+
+				<script type="text/javascript">
+					// On ouvre la balise
+					document.write("| Heure : <select id='hour'>");
+
+					// On ajoute les différentes selections possibles
+					for (var i = 0; i < 24; i++) {
+						if (i == 0) {
+							// La première option est sélectionnée
+							document.write("<option value=" + i + " selected>" + i + "h</option>");
+						}else{
+							document.write("<option value=" + i + ">" + i + "h</option>");
+						}
+					}
+
+					// On ferme la balise
+					document.write("</select>");
+				</script>		
+
+				<input type="button" value="ouvert ?" onclick="valider()">
+			</form>
+			<p id="answer">resultat</p>
+			<script>
+				// Horaires d'ouverture
+				const hourMinMorning = 7;
+				const hourMaxMorning = 13;
+				const hourMinAfternoon = 16;
+				const hourMaxAfternoon = 20;
+
+				// Calcul si la boulangerie est ouverte
+				function valider() {
+					// Assignation
+					var day = document.getElementById("day").value;
+					var hour = document.getElementById("hour").value;
+
+					// Mise en forme de la réponse
+					answer.innerHTML = translate(isOpen(day, hour));
+					answer.style.color = color(isOpen(day, hour));
+					answer.style.borderColor = color(isOpen(day, hour));
+
+					
+				}	
+				// Calculer si l'année est bissextile
+				function isOpen(day, hour){
+					// Manipulation des opérateurs logique et de comparaison
+					return (hour >= hourMinMorning && hour <= hourMaxMorning && day != 1) || (hour >= hourMinAfternoon && hour <= hourMaxAfternoon && day != 0 && day != 1) && (day != 1);
+					}
+
+				// Traduit un booléen en ouvert/fermé
+				function translate(bool) {
+					if (bool){
+						return "ouvert";
+					}else{
+						return "fermé";
+					}
+				}
+
+				// Retourne la couleur appropriée
+				function color(bool){
+					if (bool) {
+						return "green";
+					}else{
+						return "red";
+					}
+				}
+			</script>
+		</fieldset>
+		<footer></footer>
+	</body>
+</html>

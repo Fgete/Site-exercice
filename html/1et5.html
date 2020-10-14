@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>1 et 5</title>
+		<meta charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../images/profil.jpg"/>
+		<link rel="stylesheet" type="text/css" href="../css/1et5.css">
+	</head>
+
+	<body>
+		<header>
+			<h1 class="titre">1 et 5</h1>
+		</header>
+		<fieldset>
+			<legend>JavaScript</legend>
+
+		<h4>Modulo</h4>
+		<form>
+			<input type="number" id="number" placeholder="de 1 à 5"></input>
+			<input type="button" value="Valide ?" onclick="Valide()">
+		</form>
+		<p id="modulo"></p>
+		<script>
+			function Valide(){
+				var inputNumber = document.getElementById("number");
+				var number = inputNumber.value;
+
+				if (number >= 1 && number <= 5){
+					inputNumber.style.backgroundColor = "darkgreen";
+					inputNumber.style.border = "solid 2px green";
+				}else{
+					inputNumber.style.backgroundColor = "darkred";
+					inputNumber.style.border = "solid 2px red";
+				}
+			}
+		</script>
+
+		<h4></h4>
+
+		</fieldset>
+		<footer>
+			<a href="../index.html" id="retour">RETOUR</a>
+		</footer>
+	</body>
+</html>

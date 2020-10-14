@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Mois</title>
+		<meta charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../images/profil.jpg"/>
+		<link rel="stylesheet" type="text/css" href="../css/mois.css">
+	</head>
+
+	<body>
+		<header>
+			<h1>JavaScript</h1>
+		</header>
+		<fieldset>
+			<legend>JavaScript</legend>
+			<h4>Mois</h4>
+			<form>
+				<script type="text/javascript">
+					// Tableau mois
+					var mois = ["Mois", "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"];
+
+					// Debug longueur de la liste
+					// console.log(mois.length);
+
+					// On ouvre la balise
+					document.write("Mois : <select id='month'>");
+
+					// On ajoute les différentes selections possibles
+					for (var i = 0; i < mois.length; i++) {
+						if (i == 0) {
+							// La première option est sélectionnée
+							document.write("<option value=" + i + " selected>- " + mois[i] + " -</option>");
+						}else{
+							document.write("<option value=" + i + ">" + mois[i] + "</option>");
+						}
+					}
+
+					// On ferme la balise
+					document.write("</select>");
+				</script>
+
+				<input type="button" value="saison ?" onclick="valider()">
+			</form>
+			<p id="answer">resultat</p>
+			<script>
+				// Calcul quel saison on est
+				function valider() {
+					// Assignation
+					var month = document.getElementById("month").value;
+					var answer = document.getElementById("answer");
+
+					// Mise en forme de la réponse
+					answer.innerHTML = saison(month);
+					answer.style.color = color(saison(month));
+					answer.style.borderColor = color(saison(month));
+
+					
+				}	
+				// Calculer la saison
+				function saison(month){
+					// Manipulation des opérateurs logique et de comparaison
+					switch (month*1){
+						case 12:
+						case 1:
+						case 2:
+							return "hiver";
+							break;
+						case 3:
+						case 4:
+						case 5:
+							return "printemps";
+							break;
+						case 6:
+						case 7:
+						case 8:
+							return "été";
+							break;
+						case 9:
+						case 10:
+						case 11:
+							return "automne";
+							break;
+						default:
+							return "error";
+					}
+				}
+				// Retourne la couleur appropriée
+				function color(season){
+					switch (season){
+						case "hiver":
+							return "white";
+							break;
+						case "printemps":
+							return "green";
+							break;
+						case "été":
+							return "yellow";
+							break;
+						case "automne":
+							return "orange";
+							break;
+						default :
+							return "black";
+					}
+				}
+			</script>
+		</fieldset>
+		<footer></footer>
+	</body>
+</html>

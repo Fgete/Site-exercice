@@ -1,0 +1,22 @@
+body{
+	background-color: #424242;
+}
+
+header, footer{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background-color: #303030;
+	height: 10vw;
+}
+
+legend, fieldset{
+	color: white;
+}
+
+#answer{
+	border: solid 3px black;
+	width: 6%;
+	text-transform: uppercase;
+}

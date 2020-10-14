@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>ChoixImage</title>
+		<meta charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../images/profil.jpg"/>
+		<link rel="stylesheet" type="text/css" href="../css/choixImages.css">
+	</head>
+
+	<body>
+		<header>
+			<h1>JavaScript</h1>
+		</header>
+		<fieldset>
+			<legend>JavaScript</legend>
+			<h4>Choix Images</h4>
+			<form>
+				<script>
+					// Tableau des saisons
+					var seasons = ["Hiver", "Printemps", "Eté", "Automne"];
+
+					// Debug longueur de la liste
+					// console.log(seasons.length);
+
+					// On ouvre la balise
+					document.write("Saisons : <select id='seasons' multiple size='4'>");
+
+					// On ajoute les différentes selections possibles
+					for (var i = 0; i < seasons.length; i++) {
+						if (i == 0) {
+							// La première option est sélectionnée
+							document.write("<option value=" + (i+1) + " selected>" + seasons[i] + "</option>");
+						}else{
+							document.write("<option value=" + (i+1) + ">" + seasons[i] + "</option>");
+						}
+					}
+
+					// On ferme la balise
+					document.write("</select>");
+				</script>
+
+				<input type="button" value="Afficher" onclick="valider()">
+			</form>
+			<div id="diapo">
+				<img id="img0">
+				<img id="img1">
+				<img id="img2">
+				<img id="img3">
+				<script>
+					function afficherImages(liste){
+						console.log("Longueur : " + liste.length);
+					
+						// Affichage le l'image liste[i]
+						for (var i = 0; i < liste.length; i++){
+							console.log("print img" + liste[i] + " i = " + i);
+							document.getElementById("img" + i).setAttribute("src", "../images/choixImages" + liste[i] + ".jpg");
+							// document.write("<img src='../images/choixImages" + liste[i] + ".jpg' class='img'>");
+						}
+					}
+				</script>
+			</div>
+			
+
+			<script>
+				// On créé une liste de vérification
+				var seasons = document.getElementById("seasons");
+				var listeSelected;
+
+				// On rempli la matrice
+				function valider() {
+					console.log("RUN");
+					listeSelected = [];
+					// On prend les éléments sélectionnés pour les mettre dans un seconde liste
+					for (var i = 0; i < seasons.length; i++) {
+						if (seasons[i].selected)
+							listeSelected.push(seasons[i].value);
+					}
+
+					// DEBUG On affiche la seconde liste
+					for (var i = 0; i < listeSelected.length; i++)
+						console.log("val " + i + " = " + listeSelected[i]);
+
+					afficherImages(listeSelected);
+				}
+			</script>
+		</fieldset>
+		<footer></footer>
+	</body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<title>L A G</title>
+		<title>Site exercice</title>
 		<meta charset="utf-8"/>
 		<link rel="shortcut icon" type="image/x-icon" href="./images/profil.jpg"/>
 		<link rel="stylesheet" type="text/css" href="./css/index.css">
@@ -20,13 +20,13 @@
 					accueil
 				</div>
 				<div id="chap1" class="chapter clickable" onclick="OpenPage(1)">
-					jeux
+					Page 3
 				</div>
 				<div id="chap2" class="chapter clickable" onclick="OpenPage(2)">
-					3D
+					Page 4
 				</div>
 				<div id="chap3" class="chapter clickable" onclick="OpenPage(3)">
-					autre
+					Page 5
 				</div>
 			</div>
 
@@ -48,16 +48,20 @@
 				<div id="diaporama">
 					<div id="slides" class="anime">
 						<div id="slide0" class="slide">
-							<div class="mask anime lightFont unSelect" onclick="OpenPage(3)">
-								VJING
+							<div class="mask anime lightFont unSelect" onclick="OpenPage(1)">
+								PAGE 3
 							</div>
 						</div>
 						<div src="./images/slides/slide1.png" id="slide1" class="slide">
-							<div class="mask anime lightFont unSelect" onclick="OpenPage(1)">
-								ARM Project
+							<div class="mask anime lightFont unSelect" onclick="OpenPage(2)">
+								PAGE 4
 							</div>
 						</div>
-						<div src="./images/slides/slide2.png" id="slide2" class="slide"></div>
+						<div src="./images/slides/slide2.png" id="slide2" class="slide">
+							<div class="mask anime lightFont unSelect" onclick="OpenPage(3)">
+								PAGE 5
+							</div>
+						</div>
 						<div src="./images/slides/slide3.png" id="slide3" class="slide"></div>
 						<div src="./images/slides/slide4.png" id="slide4" class="slide"></div>
 					</div>
@@ -114,13 +118,19 @@
 				</div>
 			</div>
 			<div id="page1" class="chest">
-				<h1 class="darkFont">Jeux</h1>
+				<h1 class="darkFont">Page 3</h1>
+				<div class="travaux anime">
+					<a href="./html/operations.html" class="darkFont">Opérations</a>
+				</div>
 			</div>
 			<div id="page2" class="chest">
-				<h1 class="darkFont">3D</h1>
+				<h1 class="darkFont">Page 4</h1>
+				<div class="travaux anime">
+					<a href="./html/1et5.html" class="darkFont">1 et 5</a>
+				</div>
 			</div>
 			<div id="page3" class="chest">
-				<h1 class="darkFont">Autre</h1>
+				<h1 class="darkFont">Page 5</h1>
 			</div>
 		</div>
 		<script>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Variables</title>
+		<meta charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../images/profil.jpg"/>
+		<link rel="stylesheet" type="text/css" href="../css/variables.css">
+	</head>
+
+	<body>
+		<header>
+			<h1>JavaScript</h1>
+		</header>
+		<fieldset>
+			<legend>JavaScript</legend>
+			<script type="text/javascript">
+
+			// Déclaration & assignation de variable
+			var maVariable = 17;
+
+			// Sortie console
+			console.log("var maVariable : " + maVariable);
+
+			maVariable = "";
+			console.log("var maVariable : " + maVariable);
+
+			var maVariable;
+			console.log("var maVariable : " + maVariable);
+
+			maVariable = 17;
+
+			console.log(typeof(maVariable));
+
+			var typeVariable = typeof(maVariable);
+			console.log("type maVariable : " + typeVariable);
+
+			console.log(typeof(typeVariable));
+
+			maVariable = "17";
+			typeVariable = typeof(maVariable);
+			console.log("type maVariable : " + typeVariable);
+
+			console.log("--------------------");
+
+			var op1 = 23;
+			console.log("op1 = 23");
+			var op2 = 45;
+			console.log("op2 = 45");
+			console.log("op1 + op2 : " + (op1 + op2));
+
+
+			op2 = '45';
+			console.log("Changement : op2 = '45'");
+			console.log("op1 + op2 : " + (op1 + op2));
+			console.log("op2 + op1 : " + (op2 + op1));
+
+			console.log("--------------------");
+
+			var op1 = 23;
+			console.log("op1 = 23");
+			var op2 = 23.0;
+			console.log("op2 = 23.0");
+
+			console.log("op1 == op2 : " + (op1 == op2)); // Comparaison valeur
+			console.log("op1 === op2 : " + (op1 === op2)); // Comparaison valeur & type
+
+			console.log("--------------------");
+
+			function Addition(op1, op2){
+				return op1 + op2;
+			}
+
+		</script>
+
+		<h4>Méthode 1</h4>
+		<p class="script">
+			Ceci est un paragraphe contenant de résultat <script>document.write(Addition(op1, op2));</script> de la fonction Addition().
+		</p>
+
+		<h4>Méthode 2</h4>
+		<script>
+			document.write("<p>Ceci est un paragraphe contenant de résultat " + Addition(op1, op2) + " de la fonction Addition().</p>");
+		</script>
+
+		<h4>Méthode 3</h4>
+		<p id="p1">
+			Ceci est un paragraphe contenant de résultat <span class="script" id="resultat">--</span> de la fonction <span class="script">Addition()</span>.
+		</p>
+		<script>
+			var obj = document.getElementById("resultat");
+			var contenu = obj.innerHTML;
+			// console.log(contenu);
+
+			obj.innerHTML = Addition(op1, op2);
+		</script>
+
+		<h4>Modulo</h4>
+		<form>
+			<input type="number" id="divisé" placeholder="divisé"></input>
+			<input type="number" id="diviseur" placeholder="diviseur"></input>
+			=
+			<input type="text" id="solution" placeholder="solution"></input>
+			<input type="button" value="Multiple ?" onclick="calcul()">
+		</form>
+		<p id="modulo"></p>
+		<script>
+			var divisé;
+			var diviseur;
+			var modulo = document.getElementById("modulo");
+
+			function calcul(){
+				divisé = document.getElementById("divisé").value;
+				diviseur = document.getElementById("diviseur").value;
+
+				if (divisé != "" && typeof(divisé*1) == "number" && diviseur != "" && typeof(diviseur*1) == "number")
+				{
+					document.getElementById("solution").value = divisé / diviseur;;
+					// alert(divisé + " / " + diviseur + " ?");
+					var reste = divisé % diviseur;
+					if (reste == 0)
+						modulo.innerHTML = ("<p>" + divisé + " est multiple de " + diviseur + ".</p>");
+					else
+						modulo.innerHTML = ("<p>" + divisé + " n'est pas multiple de " + diviseur + ".</p>");
+				}
+
+				
+			}
+		</script>
+
+		<h4></h4>
+
+		</fieldset>
+		<footer></footer>
+	</body>
+</html>

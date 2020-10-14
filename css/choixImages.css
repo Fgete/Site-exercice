@@ -1,0 +1,27 @@
+body{
+	background-color: #424242;
+}
+
+header, footer{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background-color: #303030;
+	height: 10vw;
+}
+
+legend, fieldset{
+	color: black;
+}
+
+#diapo{
+	display: flex;
+	flex-direction: row;
+}
+
+img{
+	width: 20%;
+	border: none;
+	border-radius: 10%;
+}

@@ -309,3 +309,20 @@ header{
 	background-color: none;
 	color: none;
 }
+
+.travaux{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 2em;
+
+	width: 20%;
+	height: 5vw;
+
+	border-radius: 2.5vw;
+}
+
+.travaux:hover{
+	background-color: var(--color_MainOrange);
+}

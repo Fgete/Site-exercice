@@ -1,0 +1,33 @@
+body{
+	background-color: #424242;
+}
+
+header, footer{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background-color: #303030;
+	height: 10vw;
+}
+
+legend, fieldset{
+	color: white;
+}
+
+.script{
+	border: solid 3px black;
+	font-style: italic;
+	color: cyan;
+	font-weight: bold;
+}
+
+#p1{
+	color: magenta;
+}
+
+input{
+	width: 5%;
+	background-color: #909090;
+	border: none;
+}

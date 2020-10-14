@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Bissextile</title>
+		<meta charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../images/profil.jpg"/>
+		<link rel="stylesheet" type="text/css" href="../css/bissextile.css">
+	</head>
+
+	<body>
+		<header>
+			<h1>JavaScript</h1>
+		</header>
+		<fieldset>
+			<legend>JavaScript</legend>
+			<h4>Année bissextile</h4>
+			<form>
+				<input type="number" required="required" id="annee" placeholder="année"></input>
+				<input type="button" value="bissextile ?" onclick="valider()">
+			</form>
+			<p id="answer">resultat</p>
+			<script>
+				function valider() {
+					// Assignation
+					var annee = document.getElementById("annee").value;
+
+					// Mise en forme de la réponse
+					answer.innerHTML = isBissextile(annee);
+					answer.style.color = color(isBissextile(annee));
+					answer.style.borderColor = color(isBissextile(annee));
+
+					// Calculer si l'année est bissextile
+					function isBissextile(year){
+						if (year != "" && typeof(year*1) == "number" && year > 0)
+							return ((year%4 == 0) && (year%100 != 0) || (year%400 == 0));
+					}
+
+					// Retourne la couleur appropriée
+					function color(bool){
+						if (bool) {
+							return "green";
+						}else{
+							return "red";
+						}
+					}
+				}	
+			</script>
+
+		</fieldset>
+		<footer></footer>
+	</body>
+</html>

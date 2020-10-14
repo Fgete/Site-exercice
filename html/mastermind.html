@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Mastermind</title>
+		<meta charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../images/profil.jpg"/>
+		<link rel="stylesheet" type="text/css" href="../css/mastermind.css">
+	</head>
+
+	<body onload="SetupGame()">
+		<header>
+			<h1>JavaScript</h1>
+		</header>
+		<fieldset>
+			<legend>JavaScript</legend>
+			<h4>Mastermind</h4>
+			<form>
+				<div id="global">
+					<script> // HIDDEN CODE PANEL
+						// Var
+						var numberTry = 12;
+						var numberSlot = 4;
+
+						document.write("<div id='code' class='row'>");
+						// Create slots
+						for (var i = 0; i < numberSlot; i++)
+							document.write("<div id='code" + i + "' class='code slot'></div>");
+
+						document.write("<div id='gameState' class='slotInfo'></div>");
+						document.write("</div>");
+					</script>
+					<script> // TRY PANEL
+						// Create row
+						for (var i = 0; i < numberTry; i++){
+							// OPEN ROW
+							document.write("<div id='row" + i + "' class='row'>");
+
+								// OPEN SLOT
+								for (var j = 0; j < numberSlot; j++)
+									document.write("<div id='slot" + i + j + "' class='slot'></div>");
+								// CLOSE SLOT
+
+								// OPEN INFO
+								document.write("<div id='info" + i + "' class='slotInfo'>");
+
+									// OPEN DOTS
+									for (var j = 0; j < numberSlot; j++)
+										document.write("<div id='dot" + i + j + "' class='dot'></div>");
+									// CLOSE DOTS
+
+								document.write("</div>");
+								// CLOSE INFO
+
+							document.write("</div>");
+							// CLOSE ROW
+						}
+					</script>
+					<script> // INPUT PANEL
+						document.write("<div id='input' class='row'>");
+						// Create slots
+						for (var i = 0; i < numberSlot; i++)
+							document.write("<div id='input" + i + "' class='input slot' onclick='InputColor(input" + i + ")'></div>");
+
+						document.write("<div id='okButton' class='slotInfo' onclick='Check()'>OK</div>");
+						document.write("</div>");
+					</script>
+				</div>
+			</form>
+
+			<script>
+				// Var
+				var colorList = ["rgb(255, 255, 0)", "rgb(255, 0, 255)", "rgb(0, 255, 255)", "rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)"];
+				var colorCode = [];
+				var round = 0;
+
+				// Input color
+				function InputColor(obj){
+					// Get obj
+					var input = document.getElementById(obj.id);
+
+					// Next color
+					if (colorList.indexOf(input.style.backgroundColor) != colorList.length - 1)
+						input.style.backgroundColor = colorList[colorList.indexOf(input.style.backgroundColor) + 1];
+					else
+						input.style.backgroundColor = colorList[0];
+				}
+
+				// Setup inputs
+				function SetupInput(){
+					for (var i = 0; i < numberSlot; i++){
+						document.getElementById("input" + i).style.backgroundColor = colorList[0];
+					}
+				}
+
+				function Check(){
+					var nDot = 0;
+					var valid = 0;
+					// Place combinaison proposition
+					round++;
+
+					// Put color proposition
+					for (var i = 0; i < numberSlot; i++)
+						document.getElementById("slot" + (numberTry - round) + i).style.backgroundColor = document.getElementById("input" + i).style.backgroundColor;
+
+					// Reset inputs
+					SetupInput();
+
+					// Checking matches
+					for (var i = 0; i < numberSlot; i++) {
+						// Check color AND position
+						if (document.getElementById("slot" + (numberTry - round) + i).style.backgroundColor == colorCode[i]){
+							// WHITE DOT
+							document.getElementById("dot" + (numberTry - round) + nDot).style.backgroundColor = "white";
+							valid++;
+							console.log(valid);
+						}
+						// Check color only
+						else if (colorCode.includes(document.getElementById("slot" + (numberTry - round) + i).style.backgroundColor)){
+							// BLACK DOT
+							document.getElementById("dot" + (numberTry - round) + nDot).style.backgroundColor = "black";
+						}
+
+						// next dot
+						nDot++;
+					}
+					// n round
+					console.log("n round : " + round);
+
+					WinCheck(round, valid);
+				}
+
+				function WinCheck(nR, nV){
+					if (nR < 13 && nV == 4)
+						alert("BRAVO !!! Vous avez gagné !");
+					if (nR == 12 && nV != 4)
+						alert("Vous avez perdu...");
+				}
+
+				function SetupGame(){
+					// Setup inputs
+					SetupInput();
+
+					// Setup colorCode
+					for (var i = 0; i < numberSlot; i++){
+						colorCode[i] = colorList[Math.floor(Math.random() * 6)];
+						// ----X RAY----
+						// document.getElementById("code" + i).style.backgroundColor = colorCode[i];
+						// ----X RAY----
+					}
+
+					// Setup round
+					round = 0;
+				}
+			</script>
+		</fieldset>
+		<footer></footer>
+	</body>
+</html>

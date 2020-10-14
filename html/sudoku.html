@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Sudoku</title>
+		<meta charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../images/profil.jpg"/>
+		<link rel="stylesheet" type="text/css" href="../css/sudoku.css">
+	</head>
+
+	<body>
+		<header>
+			<h1>JavaScript</h1>
+		</header>
+		<fieldset>
+			<legend>JavaScript</legend>
+			<h4>Matrice</h4>
+			<form>
+				<div id="global">
+					<script type="text/javascript">
+						// Var
+						var maxCase = 9;
+
+						// On ouvre la balise div
+						document.write("<div id='matrice'>");
+
+						// On ajoute les différentes cases
+						for (var i = 1; i <= maxCase; i++) {
+							var r;
+							var c;
+
+							// Setup r
+							if (i <= 3)
+								r = 1;
+							else if (i <= 6)
+								r = 2;
+							else
+								r = 3;
+
+							// Setup c
+							if (i == 1 || i == 4 || i == 7)
+								c = 1;
+							else if (i == 2 || i == 5 || i == 8)
+								c = 2;
+							else
+								c = 3;
+
+							// Création tiles
+							document.write("<div id='slot" + i + "' class='case row" + r + " col" + c + "'></div>");
+						}
+
+						// On ferme la balise div
+						document.write("</div>");
+					</script>
+
+					<div id="optionLigne">
+						<div id="ligne1" class="button" onclick="ligne(1)">◄</div>
+						<div id="ligne2" class="button" onclick="ligne(2)">◄</div>
+						<div id="ligne3" class="button" onclick="ligne(3)">◄</div>
+					</div>
+				</div>
+				<div id="optionColonne">
+						<div id="colonne1" class="button" onclick="colonne(1)">▲</div>
+						<div id="colonne2" class="button" onclick="colonne(2)">▲</div>
+						<div id="colonne3" class="button" onclick="colonne(3)">▲</div>
+						<div id="diagonale" class="diag">
+							<input type="checkbox" id="checkbox" checked="true" onchange="AfficheDiag()">CACHER
+						</div>
+					</div>
+			</form>
+
+			<input type="button" value="Remplir" onclick="valider()">
+
+			<script>
+				// On créé une liste de vérification
+				var liste = [];
+
+				// On rempli la matrice
+				function valider() {
+					for (var i = 1; i <= 9; i++) {
+						// Create randomNumber
+						var randomNumber = Math.floor(Math.random() * 9) + 1;
+
+						// Reroll randomNumber
+						while (liste.includes(randomNumber))
+							randomNumber = Math.floor(Math.random() * 9) + 1;
+
+						// Get i case
+						var caseI = document.getElementById("slot" + i);
+
+						// Write randomNumber
+						caseI.innerHTML = randomNumber;
+
+						// Include randomNumber in the blackList
+						liste.push(randomNumber);
+					}
+				}
+
+				// Mise en évidence d'une ligne
+				function ligne(x){
+					var row = document.getElementsByClassName("row" + x);
+
+					for (var i = 1; i <= maxCase; i++){
+						document.getElementById("slot" + i).style.color = "black";
+					}
+
+					for (var i = 0; i < row.length; i++){
+						row[i].style.color = "white";
+					}
+				}
+
+				// Mise en évidence d'une colonne
+				function colonne(x){
+					var col = document.getElementsByClassName("col" + x);
+
+					for (var i = 1; i <= maxCase; i++){
+						document.getElementById("slot" + i).style.color = "black";
+					}
+
+					for (var i = 0; i < col.length; i++){
+						col[i].style.color = "white";
+					}
+				}
+
+				// Gérer la diagonale
+				function AfficheDiag(){
+					for (var i = 1; i <= 9; i++) 
+						if (i == 1 || i == 5 || i == 9)
+							if (document.getElementById("checkbox").checked)
+								document.getElementById("slot" + i).style.opacity = "100%";
+							else
+								document.getElementById("slot" + i).style.opacity = "0";
+				}
+			</script>
+		</fieldset>
+		<footer></footer>
+	</body>
+</html>

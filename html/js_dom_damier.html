@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>DOM Damier</title>
+		<meta charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../images/profil.jpg"/>
+		<link rel="stylesheet" type="text/css" href="../css/js_dom.css">
+	</head>
+
+	<body>
+		<header>
+			<h1>DOM</h1>
+		</header>
+		<fieldset>
+			<legend>DOM Damier</legend>
+
+			<h2>(DOM) Création d'un damier</h2>
+
+			<script>
+				CreateTd(0);
+
+				// Création d'un TD en fonction de x (numéro de la case dans le damier)
+				function CreateTd(x){
+					var newTd = document.createElement("td");
+					if (x == 0)
+						newTd.setAttribute("class", "BlackCase");
+					else
+						newTd.setAttribute("class", "whiteCase");
+					return newTd;
+				}
+			</script>
+
+		</fieldset>
+		<footer>
+			<a id="retour" href="../index.html">RETOUR</a>
+		</footer>
+	</body>
+</html>

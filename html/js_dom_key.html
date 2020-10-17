@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>KEY</title>
+		<meta charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../images/profil.jpg"/>
+		<link rel="stylesheet" type="text/css" href="../css/js_dom_key.css">
+	</head>
+
+	<body>
+		<header>
+			<h1>DOM</h1>
+		</header>
+		<div id="land">
+			<div id="perso1" class="perso">
+				☻
+			</div>
+			<div id="perso2" class="perso">
+				☻
+			</div>
+
+			<script>
+				var perso1 = document.getElementById("perso1").style;
+				var perso2 = document.getElementById("perso2").style;
+				var land = document.getElementById("land").style;
+
+				var positionH1 = 40;
+				var positionV1 = 50;
+
+				var positionH2 = 60;
+				var positionV2 = 50;
+
+				UpdatePosition(perso1, positionV1, positionH1);
+				UpdatePosition(perso2, positionV2, positionH2);
+
+				const step = 1;
+
+				document.onkeydown = function(event){
+				 	event = event || window.event;
+				 	// alert(event.keyCode);
+
+					// LEFT : 37
+					// UP : 38
+					// RIGHT : 39
+					// DOWN : 40
+
+					// Q : 81
+					// Z : 90
+					// D : 68
+					// S : 83
+
+					ChangePosition1(perso1);
+					ChangePosition2(perso2);
+				}
+
+				function ChangePosition1(){
+					switch (event.keyCode){
+						case 37:
+							if (positionH1 > 0)
+								positionH1 -= step;
+						break;
+						case 38:
+							if (positionV1 > 0)
+								positionV1 -= step;
+						break;
+						case 39:
+							if (positionH1 < 100)
+								positionH1 += step;
+						break;
+						case 40:
+							if (positionV1 < 100)
+								positionV1 += step;
+						break;
+					}
+					UpdatePosition(perso1, positionV1, positionH1);
+				}
+
+				function ChangePosition2(){
+					switch (event.keyCode){
+						case 81:
+							if (positionH2 > 0 && TestCollision(positionH2, positionH1) && TestCollision(positionV2, positionV1))
+								positionH2 -= step;
+						break;
+						case 90:
+							if (positionV2 > 0)
+								positionV2 -= step;
+						break;
+						case 68:
+							if (positionH2 < 100)
+								positionH2 += step;
+						break;
+						case 83:
+							if (positionV2 < 100)
+								positionV2 += step;
+						break;
+					}
+					UpdatePosition(perso2, positionV2, positionH2);
+				}
+
+				function UpdatePosition(perso, v, h){
+					perso.top = v + "%";
+					perso.left = h + "%";
+				}
+
+				function TestCollision(self, collider){
+					return (Math.abs(self - collider) > 3);
+				}
+			</script>
+			
+		</div>
+		<footer>
+			<a id="retour" href="../index.html">RETOUR</a>
+		</footer>
+	</body>
+</html>

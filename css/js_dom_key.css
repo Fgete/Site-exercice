@@ -1,0 +1,51 @@
+body{
+	background-color: #424242;
+
+	overflow: hidden;
+}
+
+header, footer{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background-color: #303030;
+	height: 10vw;
+}
+
+legend, fieldset{
+	color: white;
+}
+
+#land{
+	height: 50vw;
+	border: solid 2px white;
+
+	padding-right: 3vw;
+	padding-bottom: 3vw;
+}
+
+.perso{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: 3vw;
+	height: 3vw;
+
+	font-size: 5em;
+
+	border-radius: 50%;
+	
+	position: relative;
+}
+
+#perso1{
+	border: solid 2px magenta;
+	color: magenta;
+}
+
+#perso2{
+	border: solid 2px cyan;
+	color: cyan;
+}

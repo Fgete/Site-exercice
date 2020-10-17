@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Intro au DOM</title>
+		<meta charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../images/profil.jpg"/>
+		<link rel="stylesheet" type="text/css" href="../css/js_dom.css">
+	</head>
+
+	<body>
+		<header>
+			<h1>DOM</h1>
+		</header>
+		<fieldset>
+			<legend>Intro au DOM</legend>
+
+			<h2>(DOM) Document Object Model</h2>
+
+			<h3>Gestion des événements avec le DOM</h3>
+
+			<div id="cadre" style="border-width: 10px">
+				<p id="para1" class="para">
+					Paragraphe contenu dans le cadre.
+				</p>
+				<p id="para2" class="para">Saucisse !</p>
+
+				<div id="movingBall"></div>
+			</div>
+
+			<script>
+				
+				var boule = document.getElementById("movingBall");
+
+				var moveH = setInterval(FrameH, 2);
+				var moveV = setInterval(FrameV, 2);
+
+				var positionH = 0;
+				var positionV = 100;
+				var dirH = .1;
+				var dirV = -.6;
+
+				function FrameH(){
+					if (positionH >= 100)
+						dirH = -.1;
+					else if (positionH <= 0){
+						dirH = .1;
+					}
+					positionH += dirH;
+					boule.style.left = "calc(" + positionH + "% - 10px)";
+				}
+
+				function FrameV(){
+					if (positionV >= 100)
+						dirV = -.6;
+					else if (positionV <= 0){
+						dirV = .6;
+					}
+					positionV += dirV;
+					boule.style.bottom = "calc(" + positionV + "% - 10px)";
+				}
+
+			</script>
+
+			<h3 id="myH3" class="h3">Evenement DOM click</h3>
+			<h3 id="myH3bis" class="h3">Qui veux la date ?</h3>
+
+			<script>
+				var myH3 = document.getElementById("myH3");
+				var myH3bis = document.getElementById("myH3bis");
+				myH3.onclick = function(){
+					TestChange(this);
+				}
+
+				// myH3bis.addEventListener("mouseover", AfficheDate);
+
+				function AfficheDate(obj){
+					console.log("Pouette");
+					obj.innerHTML = Date();
+					TestChange(obj);
+				}
+
+				function TestChange(obj){
+					obj.style.color = "rgb(" + Math.floor(Math.random() * Math.floor(256)) + "," + Math.floor(Math.random() * Math.floor(256)) + "," + Math.floor(Math.random() * Math.floor(256)) + ")";
+				}
+
+			</script>
+
+			<button id="btnDom">DOM</button>
+		    <script>
+		        var theDom = document.getElementById('btnDom');
+		        theDom.addEventListener('click', TtmtNode);
+		        function TtmtNode(){
+		            console.log(document.firstChild.nodeName);
+		            console.log(document.firstChild.nodeValue);
+		            console.log(typeof(document.firstChild.nodeName));
+		            console.log(typeof(document.firstChild.nodeValue));
+
+		            console.log(this.parentNode.parentNode.parentNode.nodeName);
+		        }
+		    </script>
+
+			<script>
+
+				// TRUCS QU'ON CONNAIT
+				var contour = document.getElementById("cadre");
+				var paragraphes = contour.getElementsByTagName("p");
+
+				console.log("Nombre de paragraphes contenus dans le cadre : " + paragraphes.length);
+				console.log(Array.isArray(paragraphes));
+				console.table(paragraphes);
+				console.log(paragraphes[paragraphes.length - 1].id);
+
+				// TRUCS QU'ON CONNAIT PAS
+				var x = document.querySelectorAll("p.para");
+				console.log(x);
+
+				var y = document.querySelectorAll(".para");
+				console.log(y);
+
+				var z = document.querySelectorAll("p#para1");
+				console.log(z);
+
+				console.log(x[0].innerHTML);
+
+			</script>
+
+			<button id="btn1" onmouseover="">EPAISSIR BORDURE</button>
+
+			<input id="input1" type="number" placeholder="666">
+
+			<script>
+				document.getElementById("btn1").onclick = function(){
+					var obj = document.getElementById("cadre");
+					obj.style.borderWidth = "calc(" + obj.style.borderWidth + " + 1px)";
+				}
+
+				var obj = document.getElementById("para1");
+				obj.onmouseover = function(){
+					// alert(obj.innerHTML);
+				}
+
+				var input = document.getElementById("input1");
+				input.onfocus = function(){
+					input.style.backgroundColor = "magenta";
+					input.style.border = "solid 2px violet";
+				}
+				input.onblur = function(){
+					if (input.value >= 5){
+						input.style.backgroundColor = "grey";
+						input.style.border = "solid 2px green";
+					}else{
+						input.focus();
+					}
+				}
+
+			</script>
+
+			<h3>Créer des éléments avec le DOM</h3>
+			<div id="div1">
+				<p id="p1">Premier paragraphe</p>
+				<p id="p2">Deuxième paragraphe</p>
+			</div>
+			<script>
+				var newPara = document.createElement("p"); // NOUVEAU PARA
+				var node = document.createTextNode("Un nouveau texte pour un nouveau paragraphe."); // NOUVEAU TEXTE DANS PARA
+				newPara.appendChild(node); // ON MET LE TEXTE DANS LE PARA
+
+				var element = document.getElementById("div1");
+				element.appendChild(newPara); // ON MET LE NOUVEAU PARA DANS LE DIV1
+
+				// Ajouter un élément avant le premier para
+				var para0 = document.createElement("p");
+				var node0 = document.createTextNode("Saucisse");
+				para0.appendChild(node0);
+
+				element.insertBefore(para0, element.firstChild);
+			</script>
+
+			<button id="btnRemplace" onclick="RemplaceSaucisse()">Remplace les paras</button>
+
+			<script>
+				function RemplaceSaucisse(){
+					btnRemplace = document.getElementById("btnRemplace");
+					console.log("newElement : " + para0.innerHTML);
+					console.log("oldElement : " + element.children[1].innerHTML);
+					element.replaceChild(para0, element.children[1]);
+				}
+			</script>
+		</fieldset>
+		<footer>
+			<a id="retour" href="../index.html">RETOUR</a>
+		</footer>
+	</body>
+</html>
